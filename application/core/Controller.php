@@ -11,21 +11,38 @@ namespace application\core;
 		protected $model;
 		protected $view;
 		
-		/**
-		 *  contructor init view and model obj
-		 */
-		function __construct()
+
+		public function parseGetData($input)
 		{
-			
-			$this->view = new View();
+			$pattern = ['/\.txt/','/\.html/','/\.xml/','/\.json/'];
+			$input = preg_replace($pattern,'',$input);
+			$data = explode('/',$input);
+			return $data;
 		}
-		
-		/**
-		 * some action in cotroller wich user done
-		 * 
-		 */
-		function actionIndex()
+
+		public function getPostData()
 		{
-			
+			return $_POST;
+		}
+
+		public function getPutData()
+		{
+			$arr = array();
+            $putdata = file_get_contents('php://input'); 
+            $exploded = explode('&', $putdata);  
+            
+          foreach($exploded as $pair) { 
+            $item = explode('=', $pair); 
+            if(count($item) == 2) { 
+              $arr[urldecode($item[0])] = urldecode($item[1]); 
+            } 
+          }
+          
+         return  $arr;
+		}
+
+		public function getDeleteParams()
+		{
+			return $_GET;
 		}
 	}

@@ -15,24 +15,28 @@ class ControllerCars extends core\Controller
 		$this->view = new $viewName;
 	}
 
-	public function actionGet($data)
+	public function actionGet($input)
 	{
-		$this->view->getCars($data);
+		$data = $this->parseGetData($input);
+		$this->view->getCars($input,$data);
 	}
 
-	public function actionPost()
+	public function actionPost($input)
 	{
-		$this->view->postCars();	
+		$data = $this->getPostData();
+		$this->view->postCars($input,$data);	
 	}
 
-	public function actionPut()
+	public function actionPut($input)
 	{
-		$this->view->putCars();		
+		$data = $this->getPutData();
+		$this->view->putCars($input,$data);		
 	}
 
-	public function actionDelete()
+	public function actionDelete($input)
 	{
-		$this->view->deleteCars();	
+		$data = $this->getDeleteParams();
+		$this->view->deleteCars($input,$data);	
     }
 
 

@@ -7,9 +7,9 @@ namespace application\core;
 
 class View
 {
-    public function formatOutput($data)
+    public function formatOutput($formatStr, $data)
     {
-       $dataArr = explode('.',$data);
+       $dataArr = explode('.',$formatStr);
        if(count($dataArr)> 1)
        {
         $format = $dataArr[1];
@@ -25,7 +25,7 @@ class View
             $this->dataFilterToText($data);
             break;
         case 'html':
-            $this->dataFilterToiHtml($data);
+            $this->dataFilterToHtml($data);
             break;
         case 'xml':
             $this->dataFilterToXml($data);
@@ -37,26 +37,31 @@ class View
 
     public function dataFilterToJson($data)
     {
-
-            echo $data;
+            print_r(json_encode($data));
     }
 
     public function dataFilterToHtml($data)
     {
-
-            echo $data;
+            $data = '<pre>' .  $data . '</pre>';
+            print_r($data); 
     }
 
     public function dataFilterToXml($data)
     {
-
-            echo $data;
+      $data = json_encode($data);
+            $xmlstr = <<<XML
+<?xml version='1.0' standalone='yes'?>
+<data>
+ $data
+</data>
+XML;
+    $xml = new \SimpleXMLElement($xmlstr);
+    print_r($xml->asXML());
     }
 
     public function dataFilterToText($data)
     {
-
-            echo $data;
+            print_r($data);
     }
 
 }

@@ -4,22 +4,20 @@ use application\core as core;
 
 class Cars extends core\View
 {
-    public function getCars($data = ''){
-        //        echo __FUNCTION__ . ' ' . $data;
-        $this->formatOutput($data);
+    public function getCars($input = '', $data = ''){
+        $this->formatOutput($input, $data);
     }
 
-    public function postCars($data = ''){
-    	echo __FUNCTION__ . ' ' . $data;
-    	//var_dump($_POST);
+    public function postCars($input = '', $data = ''){
+    	$this->formatOutput($input, $data);
     }
 
-    public function putCars($data = ''){
-    	echo __FUNCTION__ . ' ' . var_dump($data);
+    public function putCars($input = '', $data = ''){
+    	$this->formatOutput($input, $data);
     }
 
-    public function deleteCars($data = ''){
-    	echo __FUNCTION__ . ' ' . $data;
+    public function deleteCars($input = '', $data = ''){
+    	$this->formatOutput($input, $data);
     }
 }
 

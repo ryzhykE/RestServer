@@ -20,8 +20,9 @@ class Route
 
 	public function start()
 	{
-		list($server, $user, $dir, $taskDir , $serverDir , $apiDir, $className, $data) = explode('/', $this->url, 8);
-       // list($server, $serverDir,$apiDir ,$className, $data) = explode('/', $this->url , 7);
+		//list($server, $user, $dir, $taskDir , $serverDir , $apiDir, $className, $input) = explode('/', $this->url, 8);
+        list($server, $serverDir,$apiDir ,$className, $input) = explode('/', $this->url, 5);
+        
         $className[0] = strtoupper($className[0]); 
         
         $controllerName = 'Controller' . $className;
@@ -40,7 +41,7 @@ class Route
             $controller = new $controllerClass($className);
             if(method_exists($controller, 'actionGet'))
 			{
-				$controller->actionGet($data);
+				$controller->actionGet($input);
 			}
 			else
 			{
@@ -51,7 +52,7 @@ class Route
             $controller = new $controllerClass($className);
             if(method_exists($controller, 'actionPost'))
 			{
-				$controller->actionPost();
+				$controller->actionPost($input);
 			}
 			else
 			{
@@ -62,7 +63,7 @@ class Route
             $controller = new $controllerClass($className);
             if(method_exists($controller, 'actionDelete'))
 			{
-				$controller->actionDelete();
+				$controller->actionDelete($input);
 			}
 			else
 			{
@@ -73,7 +74,7 @@ class Route
         	$controller = new $controllerClass($className);
             if(method_exists($controller, 'actionPut'))
 			{
-				$controller->actionPut();
+				$controller->actionPut($input);
 			}
 			else
 			{
