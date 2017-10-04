@@ -2,7 +2,7 @@
 namespace application\api\cars;
 use application\core as core;
 
-class Cars extends core\view
+class Cars extends core\View
 {
     public function getCars($data = ''){
     	echo __FUNCTION__ . ' ' . $data;

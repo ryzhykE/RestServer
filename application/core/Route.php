@@ -20,9 +20,8 @@ class Route
 
 	public function start()
 	{
-		//list($server, $user, $dir, $serverDir , $apiDir, $className, $data) = explode('/', $this->url, 7);
-        list($server, $serverDir,$apiDir ,$className, $data) = explode('/', $this->url , 7);
-        
+		list($server, $user, $dir, $taskDir , $serverDir , $apiDir, $className, $data) = explode('/', $this->url, 8);
+       // list($server, $serverDir,$apiDir ,$className, $data) = explode('/', $this->url , 7);
 
         $className[0] = strtoupper($className[0]); 
         
@@ -31,7 +30,7 @@ class Route
         
         $controllerFile = $controllerName . '.php';
 		$controllerPath = "application/controllers/" . $controllerFile;
-		
+	    echo $data;	
 		if(!file_exists($controllerPath))
 		{
 			$this->ErrorPage404();	
