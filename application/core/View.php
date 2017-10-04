@@ -7,16 +7,56 @@ namespace application\core;
 
 class View
 {
-	/**
-	 * function include file with template, send
-	 * data to view from controller
-	 * @param  string $content_view  name of content template
-	 * @param  string $template_view name of base template
-	 * @param  array $data          data from model
-	 * @return true                
-	 */
-	function generate($contentView, $templateView, $data = null)
-	{
-		include "application/views/" . $templateView;
-	}
+    public function formatOutput($data)
+    {
+       $dataArr = explode('.',$data);
+       if(count($dataArr)> 1)
+       {
+        $format = $dataArr[1];
+       } 
+       else
+       {
+        $format = DEF_FORMAT;
+       }
+
+       switch($format)
+       {
+        case 'txt':
+            $this->dataFilterToText($data);
+            break;
+        case 'html':
+            $this->dataFilterToiHtml($data);
+            break;
+        case 'xml':
+            $this->dataFilterToXml($data);
+            break;
+        default:
+            $this->dataFilterToJson($data);
+       }
+    }
+
+    public function dataFilterToJson($data)
+    {
+
+            echo $data;
+    }
+
+    public function dataFilterToHtml($data)
+    {
+
+            echo $data;
+    }
+
+    public function dataFilterToXml($data)
+    {
+
+            echo $data;
+    }
+
+    public function dataFilterToText($data)
+    {
+
+            echo $data;
+    }
+
 }

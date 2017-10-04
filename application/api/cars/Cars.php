@@ -5,7 +5,8 @@ use application\core as core;
 class Cars extends core\View
 {
     public function getCars($data = ''){
-    	echo __FUNCTION__ . ' ' . $data;
+        //        echo __FUNCTION__ . ' ' . $data;
+        $this->formatOutput($data);
     }
 
     public function postCars($data = ''){

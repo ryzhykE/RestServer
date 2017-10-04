@@ -22,7 +22,6 @@ class Route
 	{
 		list($server, $user, $dir, $taskDir , $serverDir , $apiDir, $className, $data) = explode('/', $this->url, 8);
        // list($server, $serverDir,$apiDir ,$className, $data) = explode('/', $this->url , 7);
-
         $className[0] = strtoupper($className[0]); 
         
         $controllerName = 'Controller' . $className;
@@ -30,7 +29,6 @@ class Route
         
         $controllerFile = $controllerName . '.php';
 		$controllerPath = "application/controllers/" . $controllerFile;
-	    echo $data;	
 		if(!file_exists($controllerPath))
 		{
 			$this->ErrorPage404();	
@@ -42,7 +40,7 @@ class Route
             $controller = new $controllerClass($className);
             if(method_exists($controller, 'actionGet'))
 			{
-				$controller->actionGet();
+				$controller->actionGet($data);
 			}
 			else
 			{

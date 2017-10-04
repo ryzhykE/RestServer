@@ -15,9 +15,9 @@ class ControllerCars extends core\Controller
 		$this->view = new $viewName;
 	}
 
-	public function actionGet()
+	public function actionGet($data)
 	{
-		$this->view->getCars();
+		$this->view->getCars($data);
 	}
 
 	public function actionPost()
@@ -33,5 +33,7 @@ class ControllerCars extends core\Controller
 	public function actionDelete()
 	{
 		$this->view->deleteCars();	
-	}
+    }
+
+
 }
