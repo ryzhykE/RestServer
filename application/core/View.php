@@ -46,11 +46,11 @@ class View
 
     public function dataFilterToHtml($data)
     {
+         print_r('<head>');
+         print_r('</head>');
+         print_r('<body>');
         if(is_array($data))
         {
-            print_r('<head>');
-            print_r('</head>');
-            print_r('<body>');
             print_r('<pre>');
             foreach($data as $key => $value)
             {
