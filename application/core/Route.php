@@ -20,8 +20,8 @@ class Route
 
 	public function start()
 	{
-		//list($server, $user, $dir, $taskDir , $serverDir , $apiDir, $className, $input) = explode('/', $this->url, 8);
-        list($server, $serverDir,$apiDir ,$className, $input) = explode('/', $this->url, 5);
+		list($server, $user, $dir, $taskDir , $serverDir , $apiDir, $className, $input) = explode('/', $this->url, 8);
+       // list($server, $serverDir,$apiDir ,$className, $input) = explode('/', $this->url, 5);
         
         $className[0] = strtoupper($className[0]); 
         
@@ -29,7 +29,7 @@ class Route
         $controllerClass = 'application\controllers\\Controller' . $className;
         
         $controllerFile = $controllerName . '.php';
-		$controllerPath = "application/controllers/" . $controllerFile;
+        $controllerPath = "application/controllers/" . $controllerFile;
 		if(!file_exists($controllerPath))
 		{
 			$this->ErrorPage404();	
@@ -45,7 +45,7 @@ class Route
 			}
 			else
 			{
-				Route::ErrorPage404();
+				$this->ErrorPage404();
 			}
             break;
         case 'POST':
@@ -56,7 +56,7 @@ class Route
 			}
 			else
 			{
-				Route::ErrorPage404();
+				$this->ErrorPage404();
 			}
             break;
         case 'DELETE':
@@ -67,7 +67,7 @@ class Route
 			}
 			else
 			{
-				Route::ErrorPage404();
+				$this->ErrorPage404();
 			}
             break;
         case 'PUT':
@@ -78,11 +78,11 @@ class Route
 			}
 			else
 			{
-				Route::ErrorPage404();
+			$this->ErrorPage404();
 			}
             break;
         default:
-            $this->ErrorPage404();
+           // $this->ErrorPage404();
         } 
 
 	} 

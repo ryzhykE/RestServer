@@ -8,35 +8,40 @@ class ControllerCars extends core\Controller
 {
 	public function __construct($class)
 	{
-		//$modelName = 'application\models\\Model' . $class;
+		$modelName = 'application\models\\Model' . $class;
 		$viewName = 'application\api\cars\\' . $class;
 
-		//$this->model = new $modelName;
+		$this->model = new $modelName;
 		$this->view = new $viewName;
 	}
 
 	public function actionGet($input)
-	{
-		$data = $this->parseGetData($input);
+    {
+        $params = $this->parseGetData($input);
+        if($params[0] !== '')
+        {
+            $data = $this->model->getCarById($params[0]);
+        }
+        else
+        {
+            $data = $this->model->getAllCars();
+        }
 		$this->view->getCars($input,$data);
 	}
 
 	public function actionPost($input)
 	{
-		$data = $this->getPostData();
-		$this->view->postCars($input,$data);	
+		$this->view->postCars();	
 	}
 
 	public function actionPut($input)
 	{
-		$data = $this->getPutData();
-		$this->view->putCars($input,$data);		
+		$this->view->putCars();		
 	}
 
 	public function actionDelete($input)
 	{
-		$data = $this->getDeleteParams();
-		$this->view->deleteCars($input,$data);	
+		$this->view->deleteCars();	
     }
 
 
